@@ -1,0 +1,37 @@
+@if(paginatedPokemons().length > 0){
+  <div class="pokemon-list">
+    @for(pokemon of paginatedPokemons(); track pokemon.url){
+      <app-pokemon-list-item [pokemon]="pokemon"></app-pokemon-list-item>
+    }
+  </div>
+
+  <div class="pagination">
+    <button 
+      (click)="prevPage()" 
+      [disabled]="currentPage() === 1">
+      Previous
+    </button>
+
+    @for(p of visiblePages(); track p){
+      @if(p === '...'){
+        <span class="dots">...</span>
+      }
+      @else{
+        <button 
+          (click)="setPage($any(p))"
+          [class.active]="currentPage() === p">
+          {{ p }}
+        </button>
+      }
+    }
+
+    <button 
+      (click)="nextPage()" 
+      [disabled]="currentPage() === totalPages()">
+      Next
+    </button>
+  </div>
+}
+@else{
+  <p class="loading">Cargando...</p>
+}
