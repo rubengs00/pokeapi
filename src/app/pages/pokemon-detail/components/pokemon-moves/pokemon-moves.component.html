@@ -1,0 +1,36 @@
+<div class="moves-section">
+  <h2>Movimientos</h2>
+
+  @for(move of visibleMoves; track move.move.name){
+    <div class="move-card">
+      <div 
+        class="move-header"
+        (click)="toggleMove(move.move.name, move.move.url)">
+        {{ move.move.name | titlecase }}
+      </div>
+
+      @if(openedMove() === move.move.name){
+        <div class="move-body">
+          @if(moveDetails()[move.move.name]; as detail){
+            <p><strong>Tipo:</strong> {{ detail.type.name }}</p>
+            <p><strong>Potencia:</strong> {{ detail.power ?? '—' }}</p>
+            <p><strong>Precisión:</strong> {{ detail.accuracy ?? '—' }}</p>
+            <p><strong>PP:</strong> {{ detail.pp }}</p>
+            <p class="description">
+              {{ detail.description }}
+            </p>
+          }
+          @else{
+            <p>Cargando movimiento...</p>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  @if(moves.length > visibleMovesCount()){
+    <button class="load-more" (click)="loadMoreMoves()">
+      Cargar más movimientos
+    </button>
+  }
+</div>

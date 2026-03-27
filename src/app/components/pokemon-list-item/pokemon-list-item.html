@@ -1,4 +1,4 @@
-<a [routerLink]="['/pokemon', pokemon().name]">
+<a [routerLink]="['/pokemon', pokemon().url.split('/').slice(-2)[0]]">
     <div class="pokemon-list-item">
         <h1>{{pokemon().name}}</h1>
     </div>

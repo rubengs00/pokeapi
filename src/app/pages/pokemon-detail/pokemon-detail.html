@@ -1,93 +1,57 @@
 @if(pokemon(); as p){
   <div class="detail-container">
+
     <a routerLink="/" class="back-button">← Volver</a>
 
     <div class="card">
 
-      <div class="images">
-        <img [src]="frontImage()" [alt]="p.name" />
-      </div>
+      <app-pokemon-images
+        [sprites]="p.sprites"
+        [name]="p.name">
+      </app-pokemon-images>
 
-      <div class="types">
-        @for(t of p.types; track t.type.name){
-          <div class="type-item">
-            @if(!typeDetails()[t.type.name]){
-              {{ loadType(t.type.name, t.type.url) }}
-            }
+      <app-pokemon-types
+        [types]="p.types">
+      </app-pokemon-types>
 
-            @if(typeDetails()[t.type.name]){
-              <img
-                class="type-icon"
-                [src]="typeDetails()[t.type.name]"
-                [alt]="t.type.name"
-              />
-            }
+      <app-pokemon-navigation [pokemonId]="p.id">
+        <h1>{{ p.name | titlecase }}</h1>
+      </app-pokemon-navigation>
+
+      <app-pokemon-sound
+        [cries]="p.cries">
+      </app-pokemon-sound>
+
+      <div class="detail-grid">
+
+        <app-pokemon-moves
+          [moves]="p.moves">
+        </app-pokemon-moves>
+
+        <div class="sidebar">
+
+          <div class="left-column">
+            <app-pokemon-info
+              [pokemon]="p">
+            </app-pokemon-info>
           </div>
-        }
-      </div>
 
-      <h1>{{ p.name | titlecase }}</h1>
+          <div class="right-column">
+            <app-pokemon-stats
+              [stats]="p.stats">
+            </app-pokemon-stats>
 
-      <button class="cry-button" (click)="playCry()">
-        Sonido del pokemon
-      </button>
-
-      <div class="info">
-        <div class="info-item">
-          <span class="label">ID</span>
-          <span>#{{ p.id }}</span>
-        </div>
-
-        <div class="info-item">
-          <span class="label">Altura</span>
-          <span>{{ heightMeters() }} m</span>
-        </div>
-
-        <div class="info-item">
-          <span class="label">Peso</span>
-          <span>{{ weightKg() }} kg</span>
-        </div>
-      </div>
-
-      <div class="moves-section">
-        <h2>Movimientos</h2>
-
-        @for(move of visibleMoves(); track move.move.name){
-          <div class="move-card">
-            <div 
-              class="move-header"
-              (click)="toggleMove(move.move.name, move.move.url)">
-              {{ move.move.name | titlecase }}
-            </div>
-
-            @if(openedMove() === move.move.name){
-              <div class="move-body">
-                @if(moveDetails()[move.move.name]; as detail){
-                  <p><strong>Tipo:</strong> {{ detail.type.name }}</p>
-                  <p><strong>Potencia:</strong> {{ detail.power ?? '—' }}</p>
-                  <p><strong>Precisión:</strong> {{ detail.accuracy ?? '—' }}</p>
-                  <p><strong>PP:</strong> {{ detail.pp }}</p>
-                  <p class="description">
-                    {{ detail.description }}
-                  </p>
-                }
-                @else{
-                  <p>Cargando movimiento...</p>
-                }
-              </div>
-            }
+            <app-pokemon-forms
+              [sprites]="p.sprites">
+            </app-pokemon-forms>
           </div>
-        }
 
-        @if(p.moves.length > visibleMovesCount()){
-          <button class="load-more" (click)="loadMoreMoves()">
-            Cargar más movimientos
-          </button>
-        }
+        </div>
 
       </div>
 
     </div>
+
   </div>
 }
 @else{

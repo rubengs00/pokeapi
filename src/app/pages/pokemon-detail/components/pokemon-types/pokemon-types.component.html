@@ -1,0 +1,17 @@
+<div class="types">
+  @for(t of types; track t.type.name){
+    <div class="type-item">
+      @if(!typeDetails()[t.type.name]){
+        {{ loadType(t.type.name, t.type.url) }}
+      }
+
+      @if(typeDetails()[t.type.name]?.icon){
+        <img
+          class="type-icon"
+          [src]="typeDetails()[t.type.name].icon"
+          [alt]="t.type.name"
+        />
+      }
+    </div>
+  }
+</div>

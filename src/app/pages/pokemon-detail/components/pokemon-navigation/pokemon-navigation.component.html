@@ -1,0 +1,16 @@
+<div class="navigation">
+  <button 
+    class="nav-button"
+    (click)="goPrevious()"
+    [disabled]="pokemonId <= 1">
+    <
+  </button>
+
+  <ng-content></ng-content>
+
+  <button 
+    class="nav-button"
+    (click)="goNext()">
+    >
+  </button>
+</div>

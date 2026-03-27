@@ -1,0 +1,23 @@
+.info {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.info-item {
+  background: #0f172a;
+  padding: 15px 35px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #94a3b8;
+  margin-bottom: 5px;
+}

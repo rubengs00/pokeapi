@@ -1,0 +1,33 @@
+<div class="forms-container">
+  <h2>Forms</h2>
+
+  <div class="forms-grid">
+
+    @if(forms.front){
+      <div class="form-item">
+        <img [src]="forms.front" alt="Front" />
+        <span class="form-label normal">Normal</span>
+      </div>
+    }
+
+    @if(forms.back){
+      <div class="form-item">
+        <img [src]="forms.back" alt="Back" />
+      </div>
+    }
+
+    @if(forms.frontShiny){
+      <div class="form-item">
+        <img [src]="forms.frontShiny" alt="Front Shiny" />
+        <span class="form-label shiny">Shiny</span>
+      </div>
+    }
+
+    @if(forms.backShiny){
+      <div class="form-item">
+        <img [src]="forms.backShiny" alt="Back Shiny" />
+      </div>
+    }
+
+  </div>
+</div>

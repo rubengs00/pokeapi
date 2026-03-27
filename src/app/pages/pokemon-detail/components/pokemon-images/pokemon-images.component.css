@@ -1,0 +1,13 @@
+.images {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
+}

@@ -1,0 +1,32 @@
+<div class="stats-container">
+  <h2>Stats</h2>
+
+  @for(stat of stats; track stat.stat.name){
+    <div class="stat-row">
+
+      <div class="stat-name">
+        {{ stat.stat.name | titlecase }}
+      </div>
+
+      <div class="stat-bar-wrapper">
+
+        @if(stat.effort > 0){
+          <span class="ev-badge">+{{ stat.effort }} EV</span>
+        }
+
+        <div class="stat-bar">
+          <div 
+            class="stat-bar-fill"
+            [style.width.%]="getPercentage(stat.base_stat)">
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-value">
+        {{ stat.base_stat }}
+      </div>
+
+    </div>
+  }
+
+</div>
